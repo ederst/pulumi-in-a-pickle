@@ -6,8 +6,7 @@ import pulumi.dynamic as dynamic
 
 
 class BaseProvider(dynamic.ResourceProvider):  # , metaclass=ABCMeta):
-    def __init__(self):
-        self._base_var = 'base value'
+    _base_var = 'base value'
 
     # @abstractmethod
     @classmethod
@@ -17,13 +16,12 @@ class BaseProvider(dynamic.ResourceProvider):  # , metaclass=ABCMeta):
     def create(self, inputs: Any) -> dynamic.CreateResult:
         pulumi.log.debug(f"{type(self).__name__}.create()")
         id, outputs = self.on_create(inputs)
+        pulumi.log.warn(f'imma need the value of self._base_var: "{self._base_var}"')
         return dynamic.CreateResult(id, outs=outputs)
 
 
 class BaseResourceProvider(BaseProvider):  # , metaclass=ABCMeta):
-    def __init__(self):
-        super().__init__()
-        self._base_resource_var = 'base resource value'
+    _base_resource_var = 'base resource value'
 
     # @abstractmethod
     @classmethod
@@ -33,6 +31,8 @@ class BaseResourceProvider(BaseProvider):  # , metaclass=ABCMeta):
     def on_create(self, inputs: Any) -> (str, Dict[str, Any]):
         pulumi.log.debug(f"{type(self).__name__}.on_create()")
         outputs, config = self.ensure_config(inputs)
+
+        pulumi.log.warn(f'imma need the value of self._base_resource_var: "{self._base_resource_var}"')
+
         outputs.update({'config': config})
-        # outputs = self.on_update(new_inputs=inputs, old_inputs=None)
-        return id, outputs
+        return 'exampleID', outputs
