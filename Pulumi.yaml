@@ -1,0 +1,6 @@
+name: in-a-pickle-example
+runtime:
+  name: python
+  options:
+    virtualenv: .venv
+description: 'A minimal Pulumi program to showcase #7795'
