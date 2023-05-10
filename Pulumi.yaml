@@ -1,0 +1,12 @@
+name: test-github-provider
+config:
+  pulumi:disable-default-providers:
+    - aws
+    - kubernetes
+    - openstack
+    - github
+runtime:
+  name: python
+  options:
+    virtualenv: .venv
+description: A minimal GitHub Python Pulumi program

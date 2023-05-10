@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "test-github-provider"
+version = "0.1.0"
+description = ""
+authors = ["ederst"]
+readme = "README.md"
+packages = [{include = "test_github_provider"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pulumi = "^3.66.0"
+# With this version app_auth works
+# pulumi-github = "5.7.0"
+# With this version app_auth is broken
+pulumi-github = "5.8.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
