@@ -13,7 +13,7 @@ class ExampleArgs(object):
 
 class ExampleProvider(BaseResourceProvider):
     def __init__(self):
-        super().__init__()
+        # super().__init__()
         self._example_config = None
 
     def ensure_config(self, inputs: Any) -> (Any, str):
